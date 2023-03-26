@@ -11,6 +11,9 @@
     "csrf":{
         "secret":"Bqfb6TAAdMBT6CxtchZH4mBH"
     },
+    "session":{
+        "secret":"#$)N$4FEFEJOJ()#(#^&$JJFNlls4)&"
+    },
     "routes":{
         "auth":{
             "root":"/auth",

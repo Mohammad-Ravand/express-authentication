@@ -3,8 +3,15 @@ extends layout
 block content
   .row.justify-content-center
     h1= title
+  if(error)
+    .row.my-5.justify-content-center
+      ul.alert-danger.text-center.p-0.list-group.col-10.col-md-9.col-lg-7.col-xl-5
+        for item in error
+          li.text-white.bg-danger.list-group-item #{item}
   .row.justify-content-center
     form(action=config.routes.auth.root+config.routes.auth.register_post,, method="post" class="col-12 col-md-10 col-lg-8 col-xl-6") 
+        input(type="hidden", name="_csrf" value=_csrf)
+        
         .form-group 
             label(for="username") username
             input(type="text" name="username" class="form-control" id="username")

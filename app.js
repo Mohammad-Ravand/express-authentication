@@ -3,8 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const configMiddleware = require('./utils/config');
+var session = require('express-session')
+const config = require('config');
+const {v4 : uuidv4} = require('uuid')
+var flash = require('connect-flash');
 
+
+const configMiddleware = require('./utils/config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +17,18 @@ var authRouter = require('./routes/auth');
 
 var app = express();
 app.use(configMiddleware.config)
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  genid: function(req) {
+    return uuidv4() // use UUIDs for session IDs
+  },
+  secret: config.session.secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+app.use(flash());
+
 app.use(configMiddleware.csrf_create)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

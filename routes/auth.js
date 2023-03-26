@@ -19,12 +19,27 @@ router.post(config.routes.auth.login_post, csrf_verify,function (req, res, next)
 
 /* GET show register page */
 router.get(config.routes.auth.register_create, function (req, res, next) {
-  res.render('register');
+  // res.json(req.session.count);return;
+    res.render('register',{error: req.flash('error')});
 });
 
 /* POST show register page */
-router.post(config.routes.auth.register_post, function (req, res, next) {
-  res.send("post register user");
+router.post(config.routes.auth.register_post,csrf_verify, function (req, res, next) {
+  const {username,password,repeat_password} = req.body;
+  if(username.length && password.length>7 && password ==repeat_password){
+    req.session.user = req.body;
+    res.json({data: req.body,count: req.session.user})
+  }else{
+    if(username.length==0){
+      req.flash('error', 'username is required');
+    }else if(password.length<7){
+      req.flash('error','password is required');
+    }else{
+      req.flash('error','repeat_password is required');
+    }
+    res.redirect(config.routes.auth.root+config.routes.auth.register_create)
+  }
+
 });
 
 module.exports = router;
