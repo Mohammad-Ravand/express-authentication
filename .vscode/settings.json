@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "express-authentication",
+            "group": "resume-github",
+            "database": "${workspaceFolder:express-authentication}/prisma/dev.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

@@ -20,7 +20,8 @@
             "login_create":"/login",
             "login_post":"/login",
             "register_create":"/register",
-            "register_post":"/register"
+            "register_post":"/register",
+            "logout":"/logout"
         },
         "home":"/"
     }

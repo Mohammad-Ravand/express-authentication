@@ -3,6 +3,14 @@ extends layout
 block content
   .row.justify-content-center
     h1= title
+    if(success && success.length)
+      .alert.bg-success.text-white
+        p.mb-0=success
+  if(error)
+    .row.my-5.justify-content-center
+      ul.alert-danger.text-center.p-0.list-group.col-10.col-md-9.col-lg-7.col-xl-5
+        for item in error
+          li.text-white.bg-danger.list-group-item #{item}
   .row.justify-content-center
     form(action=config.routes.auth.root+config.routes.auth.login_post, method="post" class="col-12 col-md-10 col-lg-8 col-xl-6") 
         input(type="hidden", name="_csrf" value=_csrf)
@@ -14,5 +22,6 @@ block content
             label(for="password") password
             input(type="text" name="password" class="form-control" id="password")
         
-        .form-group.text-center
+        .d-flex.justify-content-around
             button(type="submit" class="btn btn-success m-auto px-5 text-center") login  
+            a(href=`${config.routes.auth.root+config.routes.auth.register_create}` class="mx-2 btn btn-info m-auto px-5 text-center") register  

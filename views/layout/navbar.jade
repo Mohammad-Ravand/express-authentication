@@ -1,0 +1,26 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand(href='#') Navbar
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  .collapse.navbar-collapse#navbarNavDropdown
+    ul.navbar-nav
+      li.nav-item.active
+        a.nav-link(href='#')
+          | Home 
+          span.sr-only (current)
+      li.nav-item
+        a.nav-link(href='#') Features
+      li.nav-item
+        a.nav-link(href='#') Pricing
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
+          if(user && user.username)
+            span=user.username
+          else
+            "register/login"
+        .dropdown-menu
+            if(user && user.username)
+                a.dropdown-item(href=config.routes.auth.root+config.routes.auth.logout) logout
+            else
+                a.dropdown-item(href=config.routes.auth.root+config.routes.auth.login_create) login
+                a.dropdown-item(href=config.routes.auth.root+config.routes.auth.register_create) register

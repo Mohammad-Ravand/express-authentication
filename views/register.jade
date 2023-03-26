@@ -9,20 +9,30 @@ block content
         for item in error
           li.text-white.bg-danger.list-group-item #{item}
   .row.justify-content-center
-    form(action=config.routes.auth.root+config.routes.auth.register_post,, method="post" class="col-12 col-md-10 col-lg-8 col-xl-6") 
+    form(action=config.routes.auth.root+config.routes.auth.register_post, method="post" class="col-12 col-md-10 col-lg-8 col-xl-6") 
         input(type="hidden", name="_csrf" value=_csrf)
-        
-        .form-group 
+       
+        .form-group  
             label(for="username") username
-            input(type="text" name="username" class="form-control" id="username")
+            if(user && user.username)
+              input(type="text" name="username" value=user.username class="form-control" id="username")
+            else
+              input(type="text" name="username"  class="form-control" id="username")
 
         .form-group 
             label(for="password") password
-            input(type="password" name="password" class="form-control" id="password")
+            if(user && user.password)
+              input(type="password" name="password" value=user.password  class="form-control" id="password")
+            else
+              input(type="password" name="password" class="form-control" id="password")
 
         .form-group 
             label(for="repeat_password") repeat password
-            input(type="password" name="repeat_password" class="form-control" id="repeat_password")
+            if(user && user.repeat_password)
+              input(type="password" name="repeat_password" value=user.repeat_password class="form-control" id="repeat_password")
+            else
+              input(type="password" name="repeat_password" class="form-control" id="repeat_password")
 
-        .form-group.text-center
-            button(type="submit" class="btn btn-success m-auto px-5 text-center") login  
+        .d-flex.justify-content-around
+            button(type="submit" class="btn btn-success m-auto px-5 text-center mx-2")  register  
+            a(href=`${config.routes.auth.root+config.routes.auth.login_create}` class="mx-2 btn btn-info m-auto px-5 text-center") login  
