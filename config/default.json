@@ -1,0 +1,24 @@
+{
+    "node":{
+        "port":3000,
+        "secret":"#$)N$N#)fJfkSnNN4)&",
+        "cashe":{},
+        "session":""
+    },
+    "database":{
+
+    },
+    "csrf":{
+        "secret":"Bqfb6TAAdMBT6CxtchZH4mBH"
+    },
+    "routes":{
+        "auth":{
+            "root":"/auth",
+            "login_create":"/login",
+            "login_post":"/login",
+            "register_create":"/register",
+            "register_post":"/register"
+        },
+        "home":"/"
+    }
+}

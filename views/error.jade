@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  //- h1= message
+  //- h2= error.status
+  //- pre #{error.stack}
+  .row.justify-content-center
+    .card.border-0.col-12.col-md-12.col-lg-10.col-xl-10
+      img.m-auto.text-center.card-img-top(src='/images/http-error-404-not-found.png' alt='...' style="max-width:400px;max-height:300px")
+      .card-body
+        h5.text-center.card-title not found page
+        //- pre.h4.card-text=error.stack
+        div.text-center.mt-5
+          a.btn.btn-primary(href='#') Home page
